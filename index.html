@@ -1,60 +1,269 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hani Zitout – Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Hani ZITOUT - AI Engineer & Data Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    <style>
+        .vanta-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+        .project-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-gray-50 font-sans antialiased">
+    <div id="vanta-bg"></div>
 
-<body class="bg-gray-50 text-gray-900 relative">
+    <!-- Header -->
+    <header class="relative bg-white shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
+                        <span class="text-white font-bold">HZ</span>
+                    </div>
+                    <h1 class="text-xl font-bold text-gray-800">Hani ZITOUT</h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-500 transition">About</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-500 transition">Projects</a>
+                    <a href="#publications" class="text-gray-600 hover:text-blue-500 transition">Publications</a>
+                    <a href="#contact" class="text-gray-600 hover:text-blue-500 transition">Contact</a>
+                </nav>
+                <div class="md:hidden">
+                    <button class="text-gray-600 focus:outline-none">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-    <!-- Section Hero avec Vanta Globe -->
-    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div id="vanta-bg" class="absolute inset-0"></div>
-        <div class="relative z-10 text-center">
-            <h1 class="text-5xl font-bold text-blue-600 mb-4">Hani ZITOUT</h1>
-            <p class="text-xl text-gray-700 mb-6">Chef de Projet & Tech Lead Data Integration</p>
-            <a href="#about" class="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Découvrir</a>
+    <!-- Hero Section -->
+    <section class="py-20 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Hani ZITOUT</h1>
+                <h2 class="text-2xl md:text-3xl font-semibold mb-6 gradient-text">AI Engineer & Data Manager</h2>
+                <p class="text-gray-600 mb-8 text-lg">
+                    Passionate about data exploration, AI and management. Welcome to my digital portfolio showcasing my work, books, articles, and services.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg hover:opacity-90 transition">Contact Me</a>
+                    <a href="#projects" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition">View Projects</a>
+                </div>
+                <div class="flex mt-8 space-x-4">
+                    <a href="https://www.linkedin.com/in/zitout-hani" target="_blank" class="text-gray-600 hover:text-blue-500 transition">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                    <a href="https://github.com/zitouthani" target="_blank" class="text-gray-600 hover:text-blue-500 transition">
+                        <i data-feather="github"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="text-gray-600 hover:text-blue-500 transition">
+                        <i data-feather="twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                    <img src="https://raw.githubusercontent.com/zitouthani/website/main/unnamed.jpg" 
+                         alt="Hani ZITOUT" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Section À propos -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6 md:px-12 text-center">
-            <h2 class="text-3xl font-bold mb-8 text-gray-800">À propos de moi</h2>
-            <p class="text-gray-600 leading-relaxed max-w-3xl mx-auto">
-                Ingénieur en Intelligence Artificielle diplômé de l’ENSICAEN, je suis actuellement 
-                Chef de Projet et Tech Lead Data Integration à l’Université Paris Cité. 
-                Passionné par la gouvernance, la qualité et l’intégration des données, 
-                j’aide les organisations à valoriser leurs actifs data à travers des solutions performantes 
-                et conformes aux exigences RGPD.
-            </p>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">About Me</h2>
+            <div class="max-w-4xl mx-auto">
+                <p class="text-gray-600 mb-6 text-lg">
+                    Hello, I'm Hani ZITOUT, an AI Engineer and Data Manager. I'm the author of a guide on data integration and several articles in the field of Artificial Intelligence published by ENI Editions.
+                </p>
+                <p class="text-gray-600 mb-6 text-lg">
+                    Passionate about data exploration, analysis, AI, and management, you'll find on my E-Portfolio some of my works, books, articles, podcasts, and services.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="cpu" class="text-blue-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">AI Engineering</h3>
+                        <p class="text-gray-600">Specialized in machine learning, deep learning, and computer vision applications.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="database" class="text-teal-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Data Management</h3>
+                        <p class="text-gray-600">Expert in data integration, ETL processes, and database management systems.</p>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="book" class="text-purple-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Author</h3>
+                        <p class="text-gray-600">Published author with expertise in creating technical guides and research papers.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Section Liens et Réseaux -->
-    <section id="contact" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8">Me contacter</h2>
-            <p class="text-gray-600 mb-6">Retrouvez-moi sur mes plateformes professionnelles :</p>
-            
-            <div class="flex justify-center gap-6">
-                <a href="mailto:zitouthani@gmail.com" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition">
-                    <i data-feather="mail"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/zitout-hani" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition">
-                    <i data-feather="linkedin"></i>
-                </a>
-                <a href="https://github.com/zitouthani" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition">
-                    <i data-feather="github"></i>
-                </a>
-                <a href="https://open.spotify.com/show/2JzNwlWhWiUbHVld6Na2E9?si=AT2xF6RlS6OhnsCayct" target="_blank" class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-500 hover:bg-green-200 transition">
-                    <img src="https://github.com/zitouthani/website/blob/e9e3628e5073c72ea2fc8182255601536aafd58e/spotify-icon.png?raw=true" alt="Spotify" class="w-6 h-6">
-                </a>
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-48 overflow-hidden rounded-lg mb-4">
+                        <img src="http://static.photos/technology/640x360/101" alt="Talend Book" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Data Integration Guide</h3>
+                    <p class="text-gray-600 mb-4">A practical guide on Data Integration with Talend for professionals looking to master data integration with this ETL.</p>
+                    <a href="https://www.editions-eni.fr/livre/talend-open-studio-le-guide-complet-pour-l-integration-de-donnees-9782409040481" target="_blank" rel="noopener noreferrer" class="text-blue-500 font-medium inline-flex items-center">
+                        Read more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="project-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-48 overflow-hidden rounded-lg mb-4">
+                        <img src="http://static.photos/construction/640x360/102" alt="BIM Project" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">BIM from Point Clouds</h3>
+                    <p class="text-gray-600 mb-4">Research on generating BIM models from 3D point clouds of existing buildings with preprocessing tools and algorithms.</p>
+                    <a href="https://drive.google.com/file/d/1tw2c3HsIYpOsfDRYZHuTAf0hWsAL2Vtk/view" target="_blank" rel="noopener noreferrer" class="text-blue-500 font-medium inline-flex items-center">
+                        Read more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="project-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="h-48 overflow-hidden rounded-lg mb-4">
+                        <img src="http://static.photos/medical/640x360/103" alt="Medical Imaging" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Sphenoid Sinus Analysis</h3>
+                    <p class="text-gray-600 mb-4">Principal Component Analysis of sphenoid sinuses on 3D CT-Scan images for medical diagnosis assistance.</p>
+                    <a href="https://www.semanticscholar.org/paper/Analyse-en-Composantes-Principales-des-sinus-sur-3D-Agueni-Zitout/9f5cc9374d2a6bd73f9e0eb82a09b1307e6ab2c1" target="_blank" class="text-blue-500 font-medium inline-flex items-center">
+                        Read more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Publications</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="mb-10">
+                    <h3 class="font-bold text-xl mb-2">Data Integration Ultimate Guide</h3>
+                    <p class="text-gray-600 mb-4">This book is a practical guide on Talend Open Studio (version 8) aimed at professionals seeking to master data integration with this ETL.</p>
+                    <a href="https://www.eni-elearning.com/fr/formulaire-acces-gratuit/" target="_blank" class="text-blue-500 font-medium inline-flex items-center">
+                        Get 7 days free access <i data-feather="external-link" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="mb-10">
+                    <h3 class="font-bold text-xl mb-2">Reinforcement Corrosion Detection</h3>
+                    <p class="text-gray-600 mb-4">Computerized approach to automatically detect concrete reinforcement corrosion on 2D images from drones.</p>
+                    <a href="https://drive.google.com/file/d/1fXaN_MYknXJbg1TilCmsCotd2n-tC6uJ/view" target="_blank" class="text-blue-500 font-medium inline-flex items-center">
+                        Read more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="mb-10">
+                    <h3 class="font-bold text-xl mb-2">Feature Extraction Methods Comparison</h3>
+                    <p class="text-gray-600 mb-4">Comparative study of BoF (Bag of Features) and VLAD (Vector of Locally Aggregated Descriptor) methods.</p>
+                    <a href="https://drive.google.com/file/d/1X-V1KN27Q8T6WHwBM21fVRxfhVz4ClRs/view" target="_blank" class="text-blue-500 font-medium inline-flex items-center">
+                        Read more <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <div class="text-center mt-8">
+                    <a href="https://www.eni-elearning.com/fr/formulaire-acces-gratuit/" target="_blank" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg hover:opacity-90 transition inline-flex items-center">
+                        View All Publications <i data-feather="external-link" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-blue-50 to-teal-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
+                <form action="https://formspree.io/f/xovkkvaa" method="POST">
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Name</label>
+                            <input type="text" name="name" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" name="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                        <input type="text" name="subject" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block text-gray-700 mb-2">Message</label>
+                        <textarea name="message" id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                    </div>
+                    <button type="submit" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg hover:opacity-90 transition w-full md:w-auto">
+                        Send Message
+                    </button>
+                </form>
+
+                <div class="mt-8 pt-8 border-t border-gray-200">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h4 class="font-bold text-lg mb-2">All rights reserved ⓒ</h4>
+                            <p class="text-gray-600 flex items-center">
+                                <i data-feather="mail" class="mr-2 w-4 h-4"></i> zitouthani@gmail.com
+                            </p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://open.spotify.com/show/2JzNwlWhWiUbHVld6Na2E9?si=AT2xF6RlS6OhnsCayctshQ" target="_blank" class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center text-green-500 hover:bg-green-200 transition">
+                                <img src="https://raw.githubusercontent.com/zitouthani/website/e9e3628e5073c72ea2fc8182255601536aafd58e/spotify-icon.png" alt="Spotify" class="w-5 h-5 transition-transform duration-300 hover:scale-110">
+                            </a>
+                            <a href="https://github.com/zitouthani" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
+                                <i data-feather="github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/zitout-hani" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition">
+                                <i data-feather="linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -93,6 +302,5 @@
             points: 12.00
         });
     </script>
-
 </body>
 </html>
