@@ -1,134 +1,153 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hani ZITOUT - AI Engineer & Data Manager</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>AI Engineer & Data Manager — Hani Zitout</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <script src="https://unpkg.com/feather-icons"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
   <style>
-    body {
-      position: relative;
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
     }
     #vanta-bg {
       position: fixed;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
-      opacity: 0.25;
+      top: 0;
+      left: 0;
     }
-    .project-card {
-      transition: all 0.3s ease;
-      transform: translateY(0);
-    }
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-    .gradient-text {
-      background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .glass {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      border-radius: 1rem;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
+<body class="text-white">
 
-<body class="bg-gray-50 font-sans antialiased">
-  <!-- VANTA Background -->
+  <!-- Vanta Background -->
   <div id="vanta-bg"></div>
 
   <!-- Header -->
-  <header class="relative bg-white shadow-sm">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="flex items-center space-x-4">
-        <div class="w-12 h-12 rounded-full bg-gradient-to-r from-blue-500 to-teal-400 flex items-center justify-center">
-          <span class="text-white font-bold">HZ</span>
-        </div>
-        <h1 class="text-xl font-bold text-gray-800">Hani ZITOUT</h1>
-      </div>
-      <nav class="hidden md:flex space-x-8">
-        <a href="#about" class="text-gray-600 hover:text-blue-500 transition">About</a>
-        <a href="#projects" class="text-gray-600 hover:text-blue-500 transition">Projects</a>
-        <a href="#publications" class="text-gray-600 hover:text-blue-500 transition">Publications</a>
-        <a href="#contact" class="text-gray-600 hover:text-blue-500 transition">Contact</a>
-      </nav>
-      <div class="md:hidden">
-        <button class="text-gray-600 focus:outline-none">
-          <i data-feather="menu"></i>
-        </button>
-      </div>
-    </div>
+  <header class="flex justify-between items-center px-8 py-6 glass fixed w-full top-0 z-10">
+    <h1 class="text-2xl font-bold">Hani Zitout</h1>
+    <nav class="space-x-6">
+      <a href="#about" class="hover:text-blue-300 transition">À propos</a>
+      <a href="#experiences" class="hover:text-blue-300 transition">Expériences</a>
+      <a href="#projects" class="hover:text-blue-300 transition">Projets</a>
+      <a href="#works" class="hover:text-blue-300 transition">Travaux</a>
+      <a href="#contact" class="hover:text-blue-300 transition">Contact</a>
+    </nav>
   </header>
 
   <!-- Hero Section -->
-  <section class="py-20 px-6 relative z-10">
-    <div class="container mx-auto flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2 mb-10 md:mb-0">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Hani ZITOUT</h1>
-        <h2 class="text-2xl md:text-3xl font-semibold mb-6 gradient-text">AI Engineer & Data Manager</h2>
-        <p class="text-gray-600 mb-8 text-lg">
-          Passionate about data exploration, AI and management. Welcome to my digital portfolio showcasing my work, books, articles, and services.
-        </p>
-        <div class="flex space-x-4">
-          <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white rounded-lg hover:opacity-90 transition">Contact Me</a>
-          <a href="#projects" class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition">View Projects</a>
-        </div>
-        <div class="flex mt-8 space-x-4">
-          <a href="#" class="text-gray-600 hover:text-blue-500 transition"><i data-feather="linkedin"></i></a>
-          <a href="#" class="text-gray-600 hover:text-blue-500 transition"><i data-feather="github"></i></a>
-          <a href="#" class="text-gray-600 hover:text-blue-500 transition"><i data-feather="twitter"></i></a>
-        </div>
-      </div>
-      <div class="md:w-1/2 flex justify-center">
-        <div class="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
-          <img src="https://raw.githubusercontent.com/zitouthani/website/main/unnamed.jpg" alt="Hani ZITOUT" class="w-full h-full object-cover" />
-        </div>
-      </div>
+  <section class="flex flex-col justify-center items-center text-center min-h-screen">
+    <h2 class="text-4xl md:text-5xl font-bold mb-4">AI Engineer & Data Manager</h2>
+    <p class="text-lg text-gray-200 max-w-2xl">
+      Passionné par la data, l’intelligence artificielle et la gouvernance des données. 
+      J’aide les organisations à transformer leurs données en leviers de performance.
+    </p>
+    <div class="flex space-x-6 mt-6">
+      <a href="https://www.linkedin.com/in/zitout-hani" target="_blank" class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-500 hover:bg-blue-200 transition">
+        <i data-feather="linkedin"></i>
+      </a>
+      <a href="https://github.com/zitouthani" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-800 hover:bg-gray-200 transition">
+        <i data-feather="github"></i>
+      </a>
+      <a href="https://open.spotify.com/show/2JzNwlWhWiUbHVld6Na2E9?si=AT2xF6RlS6OhnsCayct" target="_blank" class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center hover:bg-green-200 transition">
+        <img src="https://github.com/zitouthani/website/blob/main/spotify-icon.png?raw=true" alt="Spotify" class="w-5 h-5" />
+      </a>
     </div>
   </section>
 
-  <!-- (Les autres sections restent identiques) -->
-  <!-- About, Projects, Publications, Contact, Footer -->
+  <!-- About -->
+  <section id="about" class="max-w-4xl mx-auto my-20 px-6 glass p-8">
+    <h3 class="text-3xl font-bold mb-4">À propos</h3>
+    <p class="text-gray-200">
+      Ingénieur en intelligence artificielle et Chef de projet Data Integration à l’Université Paris Cité, 
+      avec plus de 7 ans d’expérience dans la transformation numérique, la data quality et la gouvernance des données.
+    </p>
+  </section>
+
+  <!-- Expériences -->
+  <section id="experiences" class="max-w-4xl mx-auto my-20 px-6 glass p-8">
+    <h3 class="text-3xl font-bold mb-4">Expériences</h3>
+    <ul class="space-y-4 text-gray-200">
+      <li>
+        <strong>Chef de projet & TechLead Data Integration — Université Paris Cité (2021 - Présent)</strong><br>
+        Gestion d’équipes pluridisciplinaires, intégration de données via Talend, gouvernance RGPD et qualité des données.
+      </li>
+      <li>
+        <strong>Stage de fin d’études — Assystem, La Défense (2020)</strong><br>
+        Développement d’outils d’analyse et d’intégration de données industrielles.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Projets -->
+  <section id="projects" class="max-w-4xl mx-auto my-20 px-6 glass p-8">
+    <h3 class="text-3xl font-bold mb-4">Projets</h3>
+    <ul class="space-y-4 text-gray-200">
+      <li>
+        <strong>Livre — Talend Open Studio : Le guide complet</strong> (Éditions ENI)<br>
+        Référence complète pour l’intégration de données avec Talend.
+      </li>
+      <li>
+        <strong>Projet Data Governance</strong><br>
+        Mise en place d’un Data Catalog, indicateurs de qualité et conformité RGPD.
+      </li>
+    </ul>
+  </section>
+
+  <!-- Travaux -->
+  <section id="works" class="max-w-4xl mx-auto my-20 px-6 glass p-8">
+    <h3 class="text-3xl font-bold mb-4">Travaux</h3>
+    <p class="text-gray-200">
+      Retrouvez mes articles techniques, mes publications et mes analyses sur la data, l’intelligence artificielle et la gouvernance :
+      <a href="https://drive.google.com/file/d/1X-V1KN27Q8T6WHwBM21fVRxfhVz4ClRs/view" class="text-blue-300 hover:underline">Lire mes travaux</a>.
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="max-w-4xl mx-auto my-20 px-6 glass p-8 text-center">
+    <h3 class="text-3xl font-bold mb-4">Contact</h3>
+    <p class="text-gray-200 mb-4">📧 zitouthani@gmail.com</p>
+    <p class="text-gray-200">📞 06 99 72 02 47</p>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-8 relative z-10">
-    <div class="container mx-auto px-6 text-center">
-      <p>© 2025 Hani ZITOUT — All rights reserved.</p>
-    </div>
+  <footer class="text-center text-gray-400 py-6">
+    © 2025 Hani Zitout — Tous droits réservés.
   </footer>
 
   <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.124.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
   <script>
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x0077ff,
+      backgroundColor: 0x000000,
+      points: 12.00,
+      maxDistance: 20.00,
+      spacing: 18.00
+    });
     feather.replace();
-
-    // Initialisation de Vanta.js
-    let vantaEffect;
-    window.addEventListener("DOMContentLoaded", () => {
-      vantaEffect = VANTA.GLOBE({
-        el: "#vanta-bg",
-        mouseControls: true,
-        touchControls: true,
-        minHeight: 200.0,
-        minWidth: 200.0,
-        scale: 1.0,
-        scaleMobile: 1.0,
-        color: 0x3b82f6,
-        color2: 0x10b981,
-        backgroundColor: 0xf9fafb,
-        size: 1.1
-      });
-    });
-
-    window.addEventListener("beforeunload", () => {
-      if (vantaEffect) vantaEffect.destroy();
-    });
   </script>
+
 </body>
 </html>
