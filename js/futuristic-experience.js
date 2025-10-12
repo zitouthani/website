@@ -29,7 +29,7 @@ class Robot {
     this.size = 30 + Math.random() * 40;
     this.speedX = (Math.random() - 0.5) * 1.5;
     this.speedY = (Math.random() - 0.5) * 1.5;
-    this.opacity = 0.7 + Math.random() * 0.3;
+    this.opacity = 0.2 + Math.random() * 0.2;
   }
 
   draw() {
@@ -74,4 +74,5 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
 
