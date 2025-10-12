@@ -52,7 +52,7 @@ class Robot {
 
 // === Création et animation des mini-robots ===
 let robots = [];
-for (let i = 0; i < 40; i++) {
+for (let i = 0; i < 3; i++) {
   robots.push(new Robot());
 }
 
@@ -74,3 +74,4 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
