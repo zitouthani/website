@@ -331,8 +331,24 @@
     </script>
     <script src="js/futuristic-experience.js"></script>
     <link rel="stylesheet" href="css/futuristic-style.css">
+    <script>
+document.addEventListener("click", function(e) {
+    const miniRobot = document.createElement("img");
+    miniRobot.src = "https://github.com/zitouthani/website/blob/main/robot.png?raw=true"; // 👉 Mets ici le lien RAW de ton robot
+    miniRobot.classList.add("mini-robot");
+    miniRobot.style.left = e.pageX - 20 + "px";
+    miniRobot.style.top = e.pageY - 20 + "px";
+    document.body.appendChild(miniRobot);
+
+    setTimeout(() => {
+        miniRobot.remove();
+    }, 1200);
+});
+</script>
+
 </body>
 </html>
+
 
 
 
