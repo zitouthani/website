@@ -1,0 +1,72 @@
+/* === FUTURISTIC EXPERIENCE STYLE === */
+
+/* Style global de la page */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Empêche le scroll pendant l’animation */
+  background: radial-gradient(circle at center, #000010 0%, #020024 100%);
+  color: #00ffff;
+  font-family: "Orbitron", sans-serif;
+}
+
+/* Effet de halo lumineux en fond */
+body::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 90deg at 50% 50%, #00ffff20, #1db95410, #ff00ff10, #00ffff20);
+  filter: blur(150px);
+  animation: rotateBackground 20s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateBackground {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Effet de particules légères en overlay */
+.futuristic-overlay {
+  position: fixed;
+  inset: 0;
+  background: repeating-radial-gradient(circle, #00ffff05 0px, #00ffff05 2px, transparent 2px, transparent 100px);
+  animation: pulseGrid 4s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes pulseGrid {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+/* Canvas principal (robots + coeurs) */
+canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Message ou logo central optionnel */
+.futuristic-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #00ffff;
+  text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff55;
+  animation: flicker 3s infinite;
+  z-index: 3;
+}
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.3; }
+}
