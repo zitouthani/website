@@ -269,18 +269,30 @@
 
 #robot-background {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* centre parfaitement le robot */
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: -1; /* passe derrière tout le contenu */
-    opacity: 0.15; /* léger pour un effet fond */
-    pointer-events: none; /* ne bloque pas les clics */
+    overflow: hidden;
+    z-index: 0; /* on le remonte légèrement pour qu'il soit visible */
+    opacity: 0.15;
+    pointer-events: none;
 }
+
+#robot-background main {
+    transform: scale(0.8);
+}
+
+/* Agrandit un peu sur les grands écrans */
+@media (min-width: 1024px) {
+    #robot-background main {
+        transform: scale(1);
+    }
+}
+
 
 @keyframes robotShadow {
     50% { transform: translateX(-50%) scale(1); }
@@ -289,5 +301,32 @@
 @keyframes moveRobot {
     50% { transform: translateY(50px); }
 }
+
+
+/* === Mini Robots Click Effect === */
+.mini-robot {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: robot-fly 1.2s ease-out forwards;
+}
+
+@keyframes robot-fly {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-40px) scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.8) rotate(20deg);
+    }
+}
+
 /* === End Robot Animation === */
+
 
