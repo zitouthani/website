@@ -1,4 +1,4 @@
-// --- Initialisation du canvas ---
+// === Initialisation du canvas ===
 const canvas = document.createElement('canvas');
 canvas.style.position = 'fixed';
 canvas.style.top = '0';
@@ -12,6 +12,63 @@ document.body.appendChild(canvas);
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+// === Chargement de l'image du robot ===
+// ⚠️ Mets ici le lien de ton image (par ex. depuis ton repo GitHub)
+const robotImg = new Image();
+robotImg.src = "https://github.com/zitouthani/website/raw/main/robot.png"; // adapte ce chemin
+
+// === Tableau des mini-robots ===
+const robots = [];
+
+// === Fonction pour créer un robot à la position du clic ===
+function createRobot(x, y) {
+    robots.push({
+        x,
+        y,
+        size: 24 + Math.random() * 16,
+        alpha: 1,
+        vx: (Math.random() - 0.5) * 2,
+        vy: -Math.random() * 3 - 2
+    });
+}
+
+// === Événement clic pour faire apparaître des robots ===
+document.addEventListener('click', (e) => {
+    for (let i = 0; i < 6; i++) {
+        createRobot(e.clientX + (Math.random() * 40 - 20), e.clientY + (Math.random() * 40 - 20));
+    }
+});
+
+// === Animation ===
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    robots.forEach((r, i) => {
+        if (r.alpha <= 0) {
+            robots.splice(i, 1);
+        } else {
+            r.x += r.vx;
+            r.y += r.vy;
+            r.alpha -= 0.02;
+
+            if (robotImg.complete) {
+                ctx.globalAlpha = r.alpha;
+                ctx.drawImage(robotImg, r.x, r.y, r.size, r.size);
+                ctx.globalAlpha = 1;
+            }
+        }
+    });
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+// === Ajustement du canvas lors du redimensionnement ===
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
 
 // --- Création des robots ---
 class Robot {
@@ -129,4 +186,5 @@ function animateHearts() {
   requestAnimationFrame(animateHearts);
 }
 animateHearts();
+
 
