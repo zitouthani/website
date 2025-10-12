@@ -278,7 +278,7 @@
     align-items: center;
     overflow: hidden;
     z-index: 0; /* on le remonte légèrement pour qu'il soit visible */
-    opacity: 0.15;
+    opacity: 0.10;
     pointer-events: none;
 }
 
@@ -328,5 +328,6 @@
 }
 
 /* === End Robot Animation === */
+
 
 
