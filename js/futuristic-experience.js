@@ -23,12 +23,35 @@ class Robot {
     this.dx = Math.random() * 2 - 1;
     this.dy = Math.random() * 2 - 1;
   }
-  draw() {
-    ctx.beginPath();
-    ctx.rect(this.x - this.size/2, this.y - this.size/2, this.size, this.size);
-    ctx.fillStyle = this.color;
-    ctx.fill();
+
+class Robot {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.size = 20 + Math.random() * 20;
+    this.image = new Image();
+    this.image.src = "https://github.com/zitouthani/website/blob/main/robot.png?raw=true"; // 👉 ton image du robot
+    this.dx = Math.random() * 2 - 1;
+    this.dy = Math.random() * 2 - 1;
   }
+
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.drawImage(this.image, -this.size / 2, -this.size / 2, this.size, this.size);
+    ctx.restore();
+  }
+
+  update(mouseX, mouseY) {
+    this.x += this.dx + (mouseX - this.x) * 0.001;
+    this.y += this.dy + (mouseY - this.y) * 0.001;
+  }
+}
+
+
+  
+  
+  
   update(mouseX, mouseY) {
     this.x += this.dx + (mouseX - this.x) * 0.001;
     this.y += this.dy + (mouseY - this.y) * 0.001;
@@ -106,3 +129,4 @@ function animateHearts() {
   requestAnimationFrame(animateHearts);
 }
 animateHearts();
+
