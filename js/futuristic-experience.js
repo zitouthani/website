@@ -60,7 +60,7 @@ if (window.innerWidth < 768) {
 
 // === Création et animation des mini-robots ===
 let robots = [];
-for (let i = 0; i < 1; i++) {
+for (let i = 0; i < 0; i++) {
   robots.push(new Robot());
 }
 
@@ -82,6 +82,7 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
 
 
 
