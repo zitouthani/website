@@ -1,132 +1,341 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Robot Flottant sur la 2ᵉ Vue</title>
-<style>
-/* === Première section === */
+/* === Robot Animation Section === */
 #robot-section {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: radial-gradient(#04f, #000);
-  color: white;
-  font-size: 2rem;
 }
 
-/* === Deuxième section === */
-#second-section {
-  min-height: 100vh;
-  background: #f0f0f0;
+/* === Robot Core === */
+#sketch-board-con {
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#sketch-board {
+  margin-top: 20px;
+  position: relative;
+  transform: translateY(0);
+  animation: moveRobot 2s infinite ease;
+}
+
+/* === Head === */
+#head {
+  width: 166px;
+  height: 150px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: inset 0 -10px #aac;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #333;
-  font-size: 2rem;
+  position: relative;
+  z-index: 4;
 }
 
-/* === Canvas du robot flottant === */
-#floating-robot {
+#lens {
+  background-color: #007;
+  width: 140px;
+  height: 85px;
+  border-radius: 50%;
+  margin-top: 6px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#lens::after,
+#lens::before {
+  content: "";
+  border-radius: 50%;
+  background-color: inherit;
+  position: absolute;
+  width: 85px;
+  height: 70px;
+  bottom: 2px;
+  z-index: 1;
+}
+
+#lens::after {
+  right: 0;
+}
+
+#lens::before {
+  left: 0;
+}
+
+#upper-shadow {
+  width: 94%;
+  height: inherit;
+  box-shadow: inset 0 4px rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  position: absolute;
+  z-index: 10;
+  top: 3px;
+  transform: translateX(3%);
+}
+
+#rect {
+  position: absolute;
+  background-color: #fff;
+  width: 48px;
+  height: 10px;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+}
+
+#eyes {
+  position: absolute;
+  width: 70%;
+  height: 50%;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 28px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  filter: drop-shadow(0 0 5px #09f)
+          drop-shadow(0 0 10px #09f)
+          drop-shadow(0 0 15px #09f);
+}
+
+#eyes::after,
+#eyes::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 7px solid transparent;
+  border-top-color: #0ef;
+  border-left-color: #0ef;
+  transform: rotate(45deg);
+}
+
+/* === Ears + Antennas === */
+#ear {
+  position: absolute;
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 197px;
+  height: 60px;
+  background-color: #fff;
+  border: 3px solid #000;
+  border-radius: 16px;
+  z-index: 1;
+  box-shadow: inset 0 -10px #aac;
+}
+
+#ear-antenna {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#ear-antenna::after,
+#ear-antenna::before {
+  content: "";
+  width: 10px;
+  height: 35px;
+  background-color: #0ef;
+  position: absolute;
+  transform: translateY(-100%);
+  border: 3px solid #000;
+}
+
+#ear-antenna::before {
+  left: 7px;
+  border-top-left-radius: 40px;
+  box-shadow: inset -2px 0 0 2px #08c;
+}
+
+#ear-antenna::after {
+  right: 7px;
+  border-top-right-radius: 40px;
+  box-shadow: inset 2px 0 0 2px #08c;
+}
+
+/* === Cap + Body === */
+#small-cap {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 47px;
+  background-color: #fff;
+  border: 3px solid #000;
+  border-radius: 15px;
+}
+
+#body {
+  width: 126px;
+  height: 170px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 3px solid #000;
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 90px;
+  overflow: hidden;
+  box-shadow: inset 0 -10px rgba(100, 100, 100, 0.4);
+}
+
+#shadow-box {
+  width: 100%;
+  height: 40%;
+  border-radius: 50%;
+  box-shadow: 0 18px #bebed6;
+}
+
+#pocket-area {
+  width: 150%;
+  height: 60%;
+  margin-top: 45px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  margin-left: -25%;
+  position: relative;
+}
+
+#pocket {
+  width: 60px;
+  height: 50px;
+  background-color: #0cf;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 3px solid #000;
+  top: -20px;
+  border-radius: 10px 10px 50% 50%;
+  box-shadow: inset 0 -8px rgba(100, 100, 100, 0.4);
+}
+
+/* === Hands === */
+#hands {
+  position: absolute;
+  width: 170px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  top: 34%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.hand {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  transform: rotate(35deg);
+}
+
+.hand::before {
+  content: "";
+  width: 40px;
+  height: 90px;
+  background-color: #fff;
+  box-shadow: inset -10px 0 #aac;
+  border-radius: 40%;
+  border: 3px solid #000;
+}
+
+.hand:last-child {
+  transform: rotate(240deg);
+  animation: rotate 1s infinite linear;
+}
+
+/* === Animations === */
+@keyframes rotate {
+  50% {
+    transform: rotate(280deg);
+  }
+}
+
+#robot-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scale(0.7);
+  width: 100px;
+  height: 30px;
+  background-color: #abd;
+  border-radius: 50%;
+  animation: robotShadow 2s infinite ease;
+}
+
+#robot-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 0;
+  opacity: 0.10;
   pointer-events: none;
-  z-index: 999;
-  opacity: 0; /* invisible au départ */
-  transition: opacity 1.5s ease; /* effet fluide */
 }
-</style>
-</head>
-<body>
 
-<!-- === 1ère vue === -->
-<section id="robot-section">
-  <h1>Première vue 👋</h1>
-</section>
+#robot-background main {
+  transform: scale(0.8);
+}
 
-<!-- === 2ᵉ vue === -->
-<section id="second-section">
-  <h1>Deuxième vue — le robot apparaît ici 🤖</h1>
-</section>
-
-<!-- === Canvas du robot flottant === -->
-<canvas id="floating-robot"></canvas>
-
-<script>
-const canvas = document.getElementById('floating-robot');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-// Image du robot
-const robotImage = new Image();
-robotImage.src = 'https://raw.githubusercontent.com/zitouthani/website/main/robot.png';
-
-// Classe Robot
-class Robot {
-  constructor() {
-    this.reset();
-  }
-  reset() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.size = 100 + Math.random() * 100; // 🔹 plus grand
-    this.speedX = (Math.random() - 0.5) * 1.2;
-    this.speedY = (Math.random() - 0.5) * 1.2;
-    this.opacity = 0.04 + Math.random() * 0.05; // 🔹 transparent
-  }
-  draw() {
-    ctx.globalAlpha = this.opacity;
-    ctx.drawImage(robotImage, this.x, this.y, this.size, this.size);
-    ctx.globalAlpha = 1;
-  }
-  update() {
-    this.x += this.speedX;
-    this.y += this.speedY;
-    if (this.x < 0 || this.x > canvas.width - this.size) this.speedX *= -1;
-    if (this.y < 0 || this.y > canvas.height - this.size) this.speedY *= -1;
+/* Agrandit un peu sur les grands écrans */
+@media (min-width: 1024px) {
+  #robot-background main {
+    transform: scale(1);
   }
 }
 
-const robots = [];
-for (let i = 0; i < 3; i++) robots.push(new Robot());
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  robots.forEach(r => { r.update(); r.draw(); });
-  requestAnimationFrame(animate);
+@keyframes robotShadow {
+  50% {
+    transform: translateX(-50%) scale(1);
+  }
 }
 
-robotImage.onload = animate;
+@keyframes moveRobot {
+  50% {
+    transform: translateY(50px);
+  }
+}
 
-// Redimensionnement
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+/* === Mini Robots Click Effect === */
+.mini-robot {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: robot-fly 1.2s ease-out forwards;
+}
 
-// ✅ Observer la 2ᵉ section
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        // Quand la 2ᵉ section devient visible
-        canvas.style.opacity = '1';
-      } else {
-        // Quand elle n’est plus visible
-        canvas.style.opacity = '0';
-      }
-    });
-  },
-  { threshold: 0.4 } // déclenche quand ~40% est visible
-);
+@keyframes robot-fly {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 
-observer.observe(document.getElementById('second-section'));
-</script>
+  50% {
+    transform: translateY(-40px) scale(1.1);
+  }
 
-</body>
-</html>
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.8) rotate(20deg);
+  }
+}
+
+/* === End Robot Animation === */
