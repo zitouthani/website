@@ -3,60 +3,41 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Robot Animé - Première Vue</title>
+<title>Robot Flottant sur la 2ᵉ Vue</title>
 <style>
 /* === Première section === */
 #robot-section {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: radial-gradient(#04f, #000);
-    transition: opacity 1s ease;
-    position: relative;
-    z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(#04f, #000);
+  color: white;
+  font-size: 2rem;
 }
-
-/* === Robot statique (celui du design CSS) === */
-#sketch-board-con {
-    width: 350px;
-    height: 350px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-}
-#sketch-board {
-    margin-top: 20px;
-    position: relative;
-    transform: translateY(0);
-    animation: moveRobot 2s infinite ease;
-}
-
-/* --- même CSS que ton robot existant --- */
-#head { width: 166px; height: 150px; border: 3px solid #000; border-radius: 50%; background-color: #fff; box-shadow: inset 0 -10px #aac; display: flex; justify-content: center; align-items: center; position: relative; z-index: 4; }
-/* (le reste de ton CSS reste inchangé ici pour le robot stylisé) */
 
 /* === Deuxième section === */
 #second-section {
-    min-height: 100vh;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
+  min-height: 100vh;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  font-size: 2rem;
 }
 
 /* === Canvas du robot flottant === */
 #floating-robot {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0; /* invisible au départ */
-    transition: opacity 1s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0; /* invisible au départ */
+  transition: opacity 1.5s ease; /* effet fluide */
 }
 </style>
 </head>
@@ -64,53 +45,45 @@
 
 <!-- === 1ère vue === -->
 <section id="robot-section">
-  <div id="sketch-board-con">
-    <div id="sketch-board">
-      <!-- ton robot statique -->
-      <div id="head"><div id="lens"><div id="upper-shadow"></div><div id="eyes"></div></div><div id="rect"></div></div>
-    </div>
-  </div>
+  <h1>Première vue 👋</h1>
 </section>
 
 <!-- === 2ᵉ vue === -->
 <section id="second-section">
-  <h1>Bienvenue sur la suite de ton site 👋</h1>
+  <h1>Deuxième vue — le robot apparaît ici 🤖</h1>
 </section>
 
 <!-- === Canvas du robot flottant === -->
 <canvas id="floating-robot"></canvas>
 
 <script>
-// === Initialisation du canvas ===
 const canvas = document.getElementById('floating-robot');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// === Image du robot ===
+// Image du robot
 const robotImage = new Image();
 robotImage.src = 'https://raw.githubusercontent.com/zitouthani/website/main/robot.png';
 
-// === Classe Robot ===
+// Classe Robot
 class Robot {
-  constructor() { this.reset(); }
+  constructor() {
+    this.reset();
+  }
   reset() {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = 40 + Math.random() * 50;
+    this.size = 100 + Math.random() * 100; // 🔹 plus grand
     this.speedX = (Math.random() - 0.5) * 1.2;
     this.speedY = (Math.random() - 0.5) * 1.2;
-    this.opacity = window.innerWidth < 768
-      ? 0.08 + Math.random() * 0.05  // 🔹 plus transparent sur mobile
-      : 0.02 + Math.random() * 0.05; // 🔹 très léger sur PC
+    this.opacity = 0.04 + Math.random() * 0.05; // 🔹 transparent
   }
-
   draw() {
     ctx.globalAlpha = this.opacity;
-    if (robotImage.complete) ctx.drawImage(robotImage, this.x, this.y, this.size, this.size);
+    ctx.drawImage(robotImage, this.x, this.y, this.size, this.size);
     ctx.globalAlpha = 1;
   }
-
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
@@ -119,8 +92,7 @@ class Robot {
   }
 }
 
-// === Animation ===
-let robots = [];
+const robots = [];
 for (let i = 0; i < 3; i++) robots.push(new Robot());
 
 function animate() {
@@ -131,24 +103,29 @@ function animate() {
 
 robotImage.onload = animate;
 
-// === Redimensionnement ===
+// Redimensionnement
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
 
-// === Apparition uniquement sur la 2ᵉ vue ===
-window.addEventListener('scroll', () => {
-  const secondSection = document.getElementById('second-section');
-  const rect = secondSection.getBoundingClientRect();
+// ✅ Observer la 2ᵉ section
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Quand la 2ᵉ section devient visible
+        canvas.style.opacity = '1';
+      } else {
+        // Quand elle n’est plus visible
+        canvas.style.opacity = '0';
+      }
+    });
+  },
+  { threshold: 0.4 } // déclenche quand ~40% est visible
+);
 
-  // Si la deuxième section est visible à l’écran
-  if (rect.top < window.innerHeight && rect.bottom > 0) {
-    canvas.style.opacity = '1'; // 🔹 apparition fluide
-  } else {
-    canvas.style.opacity = '0'; // 🔹 disparition fluide
-  }
-});
+observer.observe(document.getElementById('second-section'));
 </script>
 
 </body>
