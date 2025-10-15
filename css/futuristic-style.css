@@ -1,10 +1,12 @@
 /* === Robot Animation Section === */
 #robot-section {
+  position: relative; /* conteneur garde le robot en place */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: radial-gradient(#04f, #000);
+  overflow: hidden; /* empêche que le robot sorte */
 }
 
 /* === Robot Core === */
@@ -16,11 +18,12 @@
   position: relative;
 }
 
+/* Le robot est absolu par rapport à son conteneur */
 #sketch-board {
-  margin-top: 20px;
-  position: relative;
+  position: absolute;
+  top: 0; /* reste à sa place initiale */
   transform: translateY(0);
-  animation: moveRobot 2s infinite ease;
+  animation: moveRobot 2s infinite ease; /* animations locales OK */
 }
 
 /* === Head === */
@@ -61,13 +64,8 @@
   z-index: 1;
 }
 
-#lens::after {
-  right: 0;
-}
-
-#lens::before {
-  left: 0;
-}
+#lens::after { right: 0; }
+#lens::before { left: 0; }
 
 #upper-shadow {
   width: 94%;
@@ -257,9 +255,7 @@
 
 /* === Animations === */
 @keyframes rotate {
-  50% {
-    transform: rotate(280deg);
-  }
+  50% { transform: rotate(280deg); }
 }
 
 #robot-shadow {
@@ -274,42 +270,12 @@
   animation: robotShadow 2s infinite ease;
 }
 
-#robot-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  z-index: 0;
-  opacity: 0.10;
-  pointer-events: none;
-}
-
-#robot-background main {
-  transform: scale(0.8);
-}
-
-/* Agrandit un peu sur les grands écrans */
-@media (min-width: 1024px) {
-  #robot-background main {
-    transform: scale(1);
-  }
-}
-
 @keyframes robotShadow {
-  50% {
-    transform: translateX(-50%) scale(1);
-  }
+  50% { transform: translateX(-50%) scale(1); }
 }
 
 @keyframes moveRobot {
-  50% {
-    transform: translateY(50px);
-  }
+  50% { transform: translateY(50px); }
 }
 
 /* === Mini Robots Click Effect === */
@@ -323,19 +289,7 @@
 }
 
 @keyframes robot-fly {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-40px) scale(1.1);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-100px) scale(0.8) rotate(20deg);
-  }
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.1); }
+  100% { opacity: 0; transform: translateY(-100px) scale(0.8) rotate(20deg); }
 }
-
-/* === End Robot Animation === */
