@@ -1,295 +1,337 @@
 /* === Robot Animation Section === */
 #robot-section {
-  position: relative; /* conteneur garde le robot en place */
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: radial-gradient(#04f, #000);
-  overflow: hidden; /* empêche que le robot sorte */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: radial-gradient(#04f, #000);
 }
 
 /* === Robot Core === */
 #sketch-board-con {
-  width: 350px;
-  height: 350px;
-  display: flex;
-  justify-content: center;
-  position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
-/* Le robot est absolu par rapport à son conteneur */
 #sketch-board {
-  position: absolute;
-  top: 0; /* reste à sa place initiale */
-  transform: translateY(0);
-  animation: moveRobot 2s infinite ease; /* animations locales OK */
+    margin-top: 20px;
+    position: relative;
+    transform: translateY(0);
+    animation: moveRobot 2s infinite ease;
 }
 
 /* === Head === */
 #head {
-  width: 166px;
-  height: 150px;
-  border: 3px solid #000;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: inset 0 -10px #aac;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 4;
+    width: 166px;
+    height: 150px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: inset 0 -10px #aac;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 4;
 }
 
 #lens {
-  background-color: #007;
-  width: 140px;
-  height: 85px;
-  border-radius: 50%;
-  margin-top: 6px;
-  position: relative;
-  display: flex;
-  align-items: center;
+    background-color: #007;
+    width: 140px;
+    height: 85px;
+    border-radius: 50%;
+    margin-top: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 #lens::after,
 #lens::before {
-  content: "";
-  border-radius: 50%;
-  background-color: inherit;
-  position: absolute;
-  width: 85px;
-  height: 70px;
-  bottom: 2px;
-  z-index: 1;
+    content: "";
+    border-radius: 50%;
+    background-color: inherit;
+    position: absolute;
+    width: 85px;
+    height: 70px;
+    bottom: 2px;
+    z-index: 1;
 }
 
-#lens::after { right: 0; }
-#lens::before { left: 0; }
+#lens::after {
+    right: 0;
+}
+
+#lens::before {
+    left: 0;
+}
 
 #upper-shadow {
-  width: 94%;
-  height: inherit;
-  box-shadow: inset 0 4px rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  position: absolute;
-  z-index: 10;
-  top: 3px;
-  transform: translateX(3%);
+    width: 94%;
+    height: inherit;
+    box-shadow: inset 0 4px rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    top: 3px;
+    transform: translateX(3%);
 }
 
 #rect {
-  position: absolute;
-  background-color: #fff;
-  width: 48px;
-  height: 10px;
-  left: 50%;
-  bottom: -6px;
-  transform: translateX(-50%);
+    position: absolute;
+    background-color: #fff;
+    width: 48px;
+    height: 10px;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
 }
 
 #eyes {
-  position: absolute;
-  width: 70%;
-  height: 50%;
-  transform: translateX(-50%);
-  left: 50%;
-  top: 28px;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  filter: drop-shadow(0 0 5px #09f)
-          drop-shadow(0 0 10px #09f)
-          drop-shadow(0 0 15px #09f);
+    position: absolute;
+    width: 70%;
+    height: 50%;
+    transform: translateX(-50%);
+    left: 50%;
+    top: 28px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    filter: drop-shadow(0 0 5px #09f) drop-shadow(0 0 10px #09f) drop-shadow(0 0 15px #09f);
 }
 
 #eyes::after,
 #eyes::before {
-  content: "";
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: 7px solid transparent;
-  border-top-color: #0ef;
-  border-left-color: #0ef;
-  transform: rotate(45deg);
+    content: "";
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 7px solid transparent;
+    border-top-color: #0ef;
+    border-left-color: #0ef;
+    transform: rotate(45deg);
 }
 
 /* === Ears + Antennas === */
 #ear {
-  position: absolute;
-  top: 16%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 197px;
-  height: 60px;
-  background-color: #fff;
-  border: 3px solid #000;
-  border-radius: 16px;
-  z-index: 1;
-  box-shadow: inset 0 -10px #aac;
+    position: absolute;
+    top: 16%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 197px;
+    height: 60px;
+    background-color: #fff;
+    border: 3px solid #000;
+    border-radius: 16px;
+    z-index: 1;
+    box-shadow: inset 0 -10px #aac;
 }
 
 #ear-antenna {
-  width: 100%;
-  height: 100%;
-  position: relative;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 #ear-antenna::after,
 #ear-antenna::before {
-  content: "";
-  width: 10px;
-  height: 35px;
-  background-color: #0ef;
-  position: absolute;
-  transform: translateY(-100%);
-  border: 3px solid #000;
+    content: "";
+    width: 10px;
+    height: 35px;
+    background-color: #0ef;
+    position: absolute;
+    transform: translateY(-100%);
+    border: 3px solid #000;
 }
 
 #ear-antenna::before {
-  left: 7px;
-  border-top-left-radius: 40px;
-  box-shadow: inset -2px 0 0 2px #08c;
+    left: 7px;
+    border-top-left-radius: 40px;
+    box-shadow: inset -2px 0 0 2px #08c;
 }
 
 #ear-antenna::after {
-  right: 7px;
-  border-top-right-radius: 40px;
-  box-shadow: inset 2px 0 0 2px #08c;
+    right: 7px;
+    border-top-right-radius: 40px;
+    box-shadow: inset 2px 0 0 2px #08c;
 }
 
 /* === Cap + Body === */
 #small-cap {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 47px;
-  background-color: #fff;
-  border: 3px solid #000;
-  border-radius: 15px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 47px;
+    background-color: #fff;
+    border: 3px solid #000;
+    border-radius: 15px;
 }
 
 #body {
-  width: 126px;
-  height: 170px;
-  background-color: #fff;
-  border-radius: 50%;
-  border: 3px solid #000;
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 90px;
-  overflow: hidden;
-  box-shadow: inset 0 -10px rgba(100, 100, 100, 0.4);
+    width: 126px;
+    height: 170px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 3px solid #000;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 90px;
+    overflow: hidden;
+    box-shadow: inset 0 -10px rgba(100, 100, 100, 0.4);
 }
 
 #shadow-box {
-  width: 100%;
-  height: 40%;
-  border-radius: 50%;
-  box-shadow: 0 18px #bebed6;
+    width: 100%;
+    height: 40%;
+    border-radius: 50%;
+    box-shadow: 0 18px #bebed6;
 }
 
 #pocket-area {
-  width: 150%;
-  height: 60%;
-  margin-top: 45px;
-  border: 3px solid #000;
-  border-radius: 50%;
-  margin-left: -25%;
-  position: relative;
+    width: 150%;
+    height: 60%;
+    margin-top: 45px;
+    border: 3px solid #000;
+    border-radius: 50%;
+    margin-left: -25%;
+    position: relative;
 }
 
 #pocket {
-  width: 60px;
-  height: 50px;
-  background-color: #0cf;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 3px solid #000;
-  top: -20px;
-  border-radius: 10px 10px 50% 50%;
-  box-shadow: inset 0 -8px rgba(100, 100, 100, 0.4);
+    width: 60px;
+    height: 50px;
+    background-color: #0cf;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 3px solid #000;
+    top: -20px;
+    border-radius: 10px 10px 50% 50%;
+    box-shadow: inset 0 -8px rgba(100, 100, 100, 0.4);
 }
 
 /* === Hands === */
 #hands {
-  position: absolute;
-  width: 170px;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  top: 34%;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    width: 170px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    top: 34%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .hand {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  transform: rotate(35deg);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    transform: rotate(35deg);
 }
 
 .hand::before {
-  content: "";
-  width: 40px;
-  height: 90px;
-  background-color: #fff;
-  box-shadow: inset -10px 0 #aac;
-  border-radius: 40%;
-  border: 3px solid #000;
+    content: "";
+    width: 40px;
+    height: 90px;
+    background-color: #fff;
+    box-shadow: inset -10px 0 #aac;
+    border-radius: 40%;
+    border: 3px solid #000;
 }
 
 .hand:last-child {
-  transform: rotate(240deg);
-  animation: rotate 1s infinite linear;
+    transform: rotate(240deg);
+    animation: rotate 1s infinite linear;
 }
 
 /* === Animations === */
 @keyframes rotate {
-  50% { transform: rotate(280deg); }
+    50% {
+        transform: rotate(280deg);
+    }
 }
 
 #robot-shadow {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%) scale(0.7);
-  width: 100px;
-  height: 30px;
-  background-color: #abd;
-  border-radius: 50%;
-  animation: robotShadow 2s infinite ease;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(0.7);
+    width: 100px;
+    height: 30px;
+    background-color: #abd;
+    border-radius: 50%;
+    animation: robotShadow 2s infinite ease;
+}
+
+#robot-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.10;
+    pointer-events: none;
+}
+
+#robot-background main {
+    transform: scale(0.8);
+}
+
+/* Agrandit un peu sur les grands écrans */
+@media (min-width: 1024px) {
+    #robot-background main {
+        transform: scale(1);
+    }
 }
 
 @keyframes robotShadow {
-  50% { transform: translateX(-50%) scale(1); }
+    50% {
+        transform: translateX(-50%) scale(1);
+    }
 }
 
 @keyframes moveRobot {
-  50% { transform: translateY(50px); }
+    50% {
+        transform: translateY(50px);
+    }
 }
 
 /* === Mini Robots Click Effect === */
 .mini-robot {
-  position: fixed;
-  width: 40px;
-  height: 40px;
-  pointer-events: none;
-  z-index: 9999;
-  animation: robot-fly 1.2s ease-out forwards;
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: robot-fly 1.2s ease-out forwards;
 }
 
 @keyframes robot-fly {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  50% { transform: translateY(-40px) scale(1.1); }
-  100% { opacity: 0; transform: translateY(-100px) scale(0.8) rotate(20deg); }
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-40px) scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.8) rotate(20deg);
+    }
 }
+
+/* === End Robot Animation === */
