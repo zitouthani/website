@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Robot Animé - Première Vue</title>
+<style>
 /* === Robot Animation Section === */
 #robot-section {
     min-height: 100vh;
@@ -5,6 +12,9 @@
     justify-content: center;
     align-items: center;
     background-image: radial-gradient(#04f, #000);
+    transition: opacity 1s ease; /* transition fluide */
+    position: relative;
+    z-index: 10;
 }
 
 /* Robot Core */
@@ -267,67 +277,66 @@
     animation: robotShadow 2s infinite ease;
 }
 
-#robot-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    z-index: 0; /* on le remonte légèrement pour qu'il soit visible */
-    opacity: 0.10;
-    pointer-events: none;
-}
-
-#robot-background main {
-    transform: scale(0.8);
-}
-
-/* Agrandit un peu sur les grands écrans */
-@media (min-width: 1024px) {
-    #robot-background main {
-        transform: scale(1);
-    }
-}
-
-
+/* Animations globales */
 @keyframes robotShadow {
     50% { transform: translateX(-50%) scale(1); }
 }
-
 @keyframes moveRobot {
     50% { transform: translateY(50px); }
 }
+</style>
+</head>
+<body>
 
+<!-- === Section du Robot (1ère vue) === -->
+<section id="robot-section">
+  <div id="sketch-board-con">
+    <div id="sketch-board">
+      <div id="small-cap"></div>
+      <div id="ear">
+        <div id="ear-antenna"></div>
+      </div>
+      <div id="head">
+        <div id="lens">
+          <div id="upper-shadow"></div>
+          <div id="eyes"></div>
+        </div>
+        <div id="rect"></div>
+      </div>
+      <div id="body">
+        <div id="shadow-box"></div>
+        <div id="pocket-area">
+          <div id="pocket"></div>
+        </div>
+      </div>
+      <div id="hands">
+        <div class="hand"></div>
+        <div class="hand"></div>
+      </div>
+      <div id="robot-shadow"></div>
+    </div>
+  </div>
+</section>
 
-/* === Mini Robots Click Effect === */
-.mini-robot {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    pointer-events: none;
-    z-index: 9999;
-    animation: robot-fly 1.2s ease-out forwards;
-}
+<!-- === Contenu du site en dessous === -->
+<section style="min-height:200vh; background:#f0f0f0; display:flex; justify-content:center; align-items:center;">
+  <h1>Bienvenue sur la suite de ton site 👋</h1>
+</section>
 
-@keyframes robot-fly {
-    0% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-    50% {
-        transform: translateY(-40px) scale(1.1);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-100px) scale(0.8) rotate(20deg);
-    }
-}
+<script>
+// === Masquer le robot après la première vue ===
+window.addEventListener('scroll', () => {
+  const robotSection = document.getElementById('robot-section');
+  const scrollLimit = window.innerHeight * 0.5; // seuil de disparition
+  if (window.scrollY > scrollLimit) {
+    robotSection.style.opacity = '0';
+    setTimeout(() => { robotSection.style.display = 'none'; }, 1000);
+  } else {
+    robotSection.style.display = 'flex';
+    robotSection.style.opacity = '1';
+  }
+});
+</script>
 
-/* === End Robot Animation === */
-
-
-
+</body>
+</html>
