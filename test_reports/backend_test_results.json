@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-12-05T13:56:57.277074",
+  "total_tests": 6,
+  "passed_tests": 6,
+  "success_rate": 100.0,
+  "test_details": [
+    {
+      "test": "Health Check",
+      "success": true,
+      "details": ""
+    },
+    {
+      "test": "Root Endpoint",
+      "success": true,
+      "details": ""
+    },
+    {
+      "test": "Generate Professional Photo",
+      "success": true,
+      "details": ""
+    },
+    {
+      "test": "Get Photo by ID",
+      "success": true,
+      "details": ""
+    },
+    {
+      "test": "List Photos",
+      "success": true,
+      "details": ""
+    },
+    {
+      "test": "Invalid File Type Handling",
+      "success": true,
+      "details": ""
+    }
+  ]
+}
