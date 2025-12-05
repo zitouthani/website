@@ -6,5 +6,3 @@ motor==3.3.2
 pymongo==4.6.0
 Pillow==10.1.0
 aiofiles==23.2.1
-emergentkeyintegrations==0.0.0
-cors==1.0.1
